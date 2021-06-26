@@ -27,7 +27,9 @@ public:
 
     void Render(){
         window->clear();
+
         player.player->draw(window);
+
         window->display();
     }
 };

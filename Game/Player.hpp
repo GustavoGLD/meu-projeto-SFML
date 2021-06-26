@@ -14,13 +14,7 @@ public:
     void Start(sf::Window* window){
 
         player = new Object(
-
-        /*
-       {sf::Vertex(sf::Vector2f( 00.0f , -50.0f), sf::Color::Red),
-        sf::Vertex(sf::Vector2f(-50.0f,  50.0f), sf::Color::Blue),
-        sf::Vertex(sf::Vector2f( 50.0f,  50.0f), sf::Color::Green)},
-        */
-
+            
         /*vertices*/
         {sf::Vertex(sf::Vector2f( 0.0f, -0.2f), sf::Color::Red),
          sf::Vertex(sf::Vector2f(-0.2f,  0.2f), sf::Color::Blue),

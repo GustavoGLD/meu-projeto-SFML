@@ -4,67 +4,57 @@
 #include <iterator>
 #include <iostream>
 
-#include "Engine/Object.cpp"
+#include "Game/Player.hpp"
+
+
+class Main : public Player{
+public:
+    sf::RenderWindow* window;
+
+    void Window(){
+        window = new sf::RenderWindow(sf::VideoMode(), "Learning SFML", sf::Style::Fullscreen);
+        window->setFramerateLimit(60);
+    }
+
+    void AllStart(){
+        Start();
+    }
+
+    void AllUpdate(){
+        Update();
+    }
+
+    void Render(){
+        triangle->draw(window);
+    }
+};
 
 int main()
 {   
-    sf::RenderWindow window(sf::VideoMode(), "Learning SFML", sf::Style::Fullscreen);
-    window.setFramerateLimit(60);
+    Main main;
+    main.Window();
+    main.AllStart();
 
-
-    Object triangle(
-
-        /*vertices*/
-       {sf::Vertex(sf::Vector2f( 00.0f, -50.0f), sf::Color::Red),
-        sf::Vertex(sf::Vector2f(-50.0f,  50.0f), sf::Color::Blue),
-        sf::Vertex(sf::Vector2f( 50.0f,  50.0f), sf::Color::Green)},
-
-        /*local matrix*/
-       {1.0f, 0.0f, (float)window.getSize().x/2,
-        0.0f, 1.0f, (float)window.getSize().y/2,
-        0.0f, 0.0f, 1.0f},
-
-        /*global matrix*/
-       {1.0f, 0.0f, 0.0f,
-        0.0f, 1.0f, 0.0f,
-        0.0f, 0.0f, 1.0f},
-
-        /*primitive type*/
-        sf::Triangles
-        
-    );
-
-
-    while (window.isOpen())
+    while (main.window->isOpen())
     {
 
         //Input
         sf::Event event;
-        while (window.pollEvent(event))
+        while (main.window->pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
-                window.close();
+                main.window->close();
         }
 
         float velocity = 7.5f;
         float ang_velocity = 6;
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-            triangle.local->translate(sf::Vector2f(velocity, 0.0f));
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-            triangle.local->translate(sf::Vector2f(-velocity, 0.0f));
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-            triangle.local->translate(sf::Vector2f(0.0f, -velocity));
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-            triangle.local->translate(sf::Vector2f(0.0f, velocity));
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-            triangle.local->rotate(-ang_velocity);
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
-            triangle.local->rotate(ang_velocity);
+
+        main.AllUpdate();
 
         //Renderizar
-        window.clear();
-        triangle.draw(&window);
-        window.display();
+        main.window->clear();
+        main.triangle->draw(main.window);
+        main.window->display();
     }
 
     return 0;

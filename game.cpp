@@ -63,7 +63,7 @@ int main()
 
         //Renderizar
         window.clear();
-        window.draw(*triangle.vertexBuffer, *triangle.global * *triangle.local);
+        triangle.draw(&window);
         window.display();
     }
 

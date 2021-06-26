@@ -76,6 +76,6 @@ Object::Object(std::vector<sf::Vertex> array,
     vertexBuffer->update(&array[0]);
 };
 
-void Object::draw(sf::RenderWindow window){
-    window.draw(*vertexBuffer, *global * *local);
+void Object::draw(sf::RenderWindow* window){
+    window->draw(*vertexBuffer, *global * *local);
 };

@@ -25,5 +25,5 @@ public:
            std::vector<float>      global,
            sf::PrimitiveType       primitive);
 
-    void draw(sf::RenderWindow window);
+    void draw(sf::RenderWindow* window);
 };

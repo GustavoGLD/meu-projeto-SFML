@@ -8,10 +8,11 @@
 
 
 class MonoBehaviour : public Object{
-    virtual void Start(){
+    virtual void Start(sf::Window* window){
 
     };
-    virtual void Update(){
+
+    virtual void Update(sf::Window* window){
         
     };
 };

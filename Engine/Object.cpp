@@ -57,7 +57,13 @@ Object::Object(std::vector<sf::Vertex> array,
                std::vector<float>      global,
                sf::PrimitiveType       primitive)
 {
-    this->array = array;
+    for (int x=0; x < array.size(); x++){
+
+        this->array.push_back(
+            sf::Vertex(sf::Vector2f(array[x].position.x, array[x].position.y), array[x].color)
+        );
+
+    }
 
     this->local = new sf::Transform(
         local[0], local[1], local[2],

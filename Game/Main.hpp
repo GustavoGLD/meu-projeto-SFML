@@ -13,7 +13,7 @@ public:
     Player player;
 
     void Window(){
-        window = new sf::RenderWindow(sf::VideoMode(500, 500), "Learning SFML", sf::Style::Fullscreen);
+        window = new sf::RenderWindow(sf::VideoMode(800, 600), "Learning SFML");
         window->setFramerateLimit(60);
     }
 

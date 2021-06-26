@@ -15,16 +15,16 @@ public:
 
         player = new Object(
 
-        /*vertices*/
+        /*
        {sf::Vertex(sf::Vector2f( 00.0f , -50.0f), sf::Color::Red),
         sf::Vertex(sf::Vector2f(-50.0f,  50.0f), sf::Color::Blue),
         sf::Vertex(sf::Vector2f( 50.0f,  50.0f), sf::Color::Green)},
-
-        /*
-        {sf::Vertex(sf::Vector2f( 0.0f, -0.2f), sf::Color::Red),
-        sf::Vertex(sf::Vector2f(-0.2f,  0.2f), sf::Color::Blue),
-        sf::Vertex(sf::Vector2f( 0.2f,  0.2f), sf::Color::Green)},
         */
+
+        /*vertices*/
+        {sf::Vertex(sf::Vector2f( 0.0f, -0.2f), sf::Color::Red),
+         sf::Vertex(sf::Vector2f(-0.2f,  0.2f), sf::Color::Blue),
+         sf::Vertex(sf::Vector2f( 0.2f,  0.2f), sf::Color::Green)},
 
         /*local matrix*/
        {1.0f, 0.0f, (float)window->getSize().x/2,
@@ -37,8 +37,9 @@ public:
         0.0f, 0.0f, 1.0f},
 
         /*primitive type*/
-        sf::Triangles
-        
+        sf::Triangles,
+
+        window        
     );
     }
 

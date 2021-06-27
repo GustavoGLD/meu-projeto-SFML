@@ -84,7 +84,7 @@ Object::Object(std::vector<sf::Vertex> array,
         //normalizar array
         this->array.push_back(sf::Vertex(
             sf::Vector2f((float)array[x].position.x * (float)window->getSize().x, 
-                         (float)array[x].position.y * (float)window->getSize().y),
+                         (float)array[x].position.y * (float)window->getSize().y * aspect),
             array[x].color,
             sf::Vector2f(array[x].texCoords.x, array[x].texCoords.y))
         );
@@ -108,15 +108,5 @@ Object::Object(std::vector<sf::Vertex> array,
 };
 
 void Object::draw(sf::RenderWindow* window){
-    sf::Transform window_aspect;
-    float x = (float)window->getSize().x;
-    float y = (float)window->getSize().y;
-    float aspect = x / y;
-
-    if (x >= y)
-        window_aspect.scale(sf::Vector2f(1.0f / aspect, 1.0f / aspect));
-    else
-        window_aspect.scale(sf::Vector2f(1.0f * aspect, 1.0f * aspect));
-
-    window->draw(*vertexBuffer, *local * *global * window_aspect);
+    window->draw(*vertexBuffer, *global * *local );
 };

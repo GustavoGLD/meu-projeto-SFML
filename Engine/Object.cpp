@@ -49,7 +49,7 @@ Object::Object(std::vector<sf::Vertex> array,
         //normalizar array
         this->array.push_back(sf::Vertex(
             sf::Vector2f((float)array[x].position.x * (float)window->getSize().x, 
-                         (float)array[x].position.y * (float)window->getSize().y * aspect),
+                         (float)array[x].position.y * (float)window->getSize().y * aspect * (-1.0f)),
             array[x].color,
             sf::Vector2f(array[x].texCoords.x, array[x].texCoords.y))
         );
@@ -108,5 +108,6 @@ Object::Object(std::vector<sf::Vertex> array,
 };
 
 void Object::draw(sf::RenderWindow* window){
-    window->draw(*vertexBuffer, *global * *local );
+    renderStates->transform = *local * *global;
+    window->draw(*vertexBuffer, *renderStates);
 };

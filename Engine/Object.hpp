@@ -7,9 +7,10 @@
 class Object{
 public:
     std::vector<sf::Vertex> array;
-    sf::VertexBuffer* vertexBuffer;
-    sf::Transform* local;
-    sf::Transform* global;
+    sf::VertexBuffer*       vertexBuffer = new sf::VertexBuffer();
+    sf::RenderStates*       renderStates = new sf::RenderStates();
+    sf::Transform*          local        = new sf::Transform();
+    sf::Transform*          global       = new sf::Transform();
 
     Object();
 

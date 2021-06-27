@@ -15,10 +15,10 @@ public:
     void Window(){
         window = new sf::RenderWindow(sf::VideoMode(), "Learning SFML", sf::Style::Fullscreen);
         window->setFramerateLimit(60);
-        std::cout << "foi" << std::endl;
     }
 
     void AllStart(){
+
         player.Start(window);
     }
 
@@ -30,7 +30,6 @@ public:
         window->clear();
 
         player.player->draw(window);
-
         window->display();
     }
 };

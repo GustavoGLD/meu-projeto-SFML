@@ -10,37 +10,44 @@ class Player : public MonoBehaviour{
 public:
 
     Object* player;
+    float velocity = 100.0f;
+    float ang_velocity = 6;
+    sf::Texture* texture = new sf::Texture();
 
     void Start(sf::Window* window){
 
         player = new Object(
             
-        /*vertices*/
-        {sf::Vertex(sf::Vector2f(-1.0f, -1.0f), sf::Color::Red),
-         sf::Vertex(sf::Vector2f( 1.0f, -1.0f), sf::Color::Blue),
-         sf::Vertex(sf::Vector2f(-1.0f,  1.0f), sf::Color::White),
-         sf::Vertex(sf::Vector2f( 1.0f,  1.0f), sf::Color::Green)},
+            /*vertices*/
+           {sf::Vertex(sf::Vector2f( 1.0f, -1.0f), sf::Vector2f(000.0f, 000.0f)),
+            sf::Vertex(sf::Vector2f(-1.0f, -1.0f), sf::Vector2f(473.0f, 000.0f)),
+            sf::Vertex(sf::Vector2f( 1.0f,  1.0f), sf::Vector2f(000.0f, 528.0f)),
+            sf::Vertex(sf::Vector2f(-1.0f,  1.0f), sf::Vector2f(473.0f, 528.0f))},
 
-        /*local matrix*/
-       {0.1f, 0.0f, (float)window->getSize().x/2,
-        0.0f, 0.1f, (float)window->getSize().y/2,
-        0.0f, 0.0f, 1.0f},
+            /*local matrix*/
+           {0.1f, 0.0f, (float)window->getSize().x/2,
+            0.0f, 0.1f, (float)window->getSize().y/2,
+            0.0f, 0.0f, 1.0f},
 
-        /*global matrix*/
-       {1.0f, 0.0f, 0.0f,
-        0.0f, 1.0f, 0.0f,
-        0.0f, 0.0f, 1.0f},
+            /*global matrix*/
+            {1.0f, 0.0f, 0.0f,
+             0.0f, 1.0f, 0.0f,
+             0.0f, 0.0f, 1.0f},
 
-        /*primitive type*/
-        sf::TrianglesStrip,
+            /*primitive type*/
+            sf::TrianglesStrip,
 
-        window        
-    );
+            window
+        );
+
+        if (!texture->loadFromFile("Assets/Plane.png")){
+            std::cout << "erro ao carregar File" << std::endl;
+        };
+
+        player->renderStates->texture = texture;
     }
 
     void Update(sf::Window* window){
-        float velocity = 60.0f;
-        float ang_velocity = 6;
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
             player->local->translate(sf::Vector2f(velocity, 0.0f));
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))

@@ -73,7 +73,7 @@ Object::Object(std::vector<sf::Vertex> array,
 };
 
 
-Object::Object(std::vector<sf::Vertex> array, 
+Object::Object(std::vector<sf::Vertex> array,
                std::vector<float>      local, 
                std::vector<float>      global,
                sf::PrimitiveType       primitive,

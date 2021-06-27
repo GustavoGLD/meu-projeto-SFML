@@ -16,13 +16,20 @@ public:
 
     void Start(sf::Window* window){
 
+        if (!texture->loadFromFile("Assets/Plane.png")){
+            std::cout << "erro ao carregar File" << std::endl;
+        };
+
+        float tx = (float)texture->getSize().x;
+        float ty = (float)texture->getSize().y;
+
         player = new Object(
             
             /*vertices*/
-           {sf::Vertex(sf::Vector2f( 1.0f, -1.0f), sf::Vector2f(000.0f, 000.0f)),
-            sf::Vertex(sf::Vector2f(-1.0f, -1.0f), sf::Vector2f(473.0f, 000.0f)),
-            sf::Vertex(sf::Vector2f( 1.0f,  1.0f), sf::Vector2f(000.0f, 528.0f)),
-            sf::Vertex(sf::Vector2f(-1.0f,  1.0f), sf::Vector2f(473.0f, 528.0f))},
+           {sf::Vertex(sf::Vector2f( 1.0f, -1.0f), sf::Vector2f(0.0f, 0.0f)),
+            sf::Vertex(sf::Vector2f(-1.0f, -1.0f), sf::Vector2f(  tx, 0.0f)),
+            sf::Vertex(sf::Vector2f( 1.0f,  1.0f), sf::Vector2f(0.0f, ty  )),
+            sf::Vertex(sf::Vector2f(-1.0f,  1.0f), sf::Vector2f(  tx, ty  ))},
 
             /*local matrix*/
            {0.1f, 0.0f, (float)window->getSize().x/2,
@@ -40,11 +47,8 @@ public:
             window
         );
 
-        if (!texture->loadFromFile("Assets/Plane.png")){
-            std::cout << "erro ao carregar File" << std::endl;
-        };
-
         player->renderStates->texture = texture;
+
     }
 
     void Update(sf::Window* window){
